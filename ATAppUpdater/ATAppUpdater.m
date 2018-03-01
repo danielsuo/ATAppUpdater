@@ -27,7 +27,6 @@
 
 @implementation ATAppUpdater
 
-
 #pragma mark - Init
 
 
@@ -50,6 +49,7 @@
         self.alertMessageDetail = @"";
         self.alertUpdateButtonTitle = @"Update";
         self.alertCancelButtonTitle = @"Not Now";
+        self.showOnce = true;
     }
     return self;
 }
@@ -81,6 +81,15 @@
 
 #pragma mark - Private Methods
 
+- (void) setSettingsValue:(NSString *) value forKey:(NSString *) key {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setValue:value forKey:key];
+    [defaults synchronize];
+};
+
+- (NSString *) getSettingsValue:(NSString *) key {
+    return [[NSUserDefaults standardUserDefaults] valueForKey:key];
+};
 
 - (BOOL)hasConnection
 {
@@ -137,6 +146,15 @@ NSString *appStoreURL = nil;
 
 - (void)alertUpdateForVersion:(NSString *)version withForce:(BOOL)force
 {
+    if (self.showOnce) {
+        NSString *versionShown = [self getSettingsValue:@"versionShown"];
+        if (versionShown && [versionShown isEqualToString:version]) {
+            return;
+        }
+        
+        [self setSettingsValue:version forKey:@"versionShown"];
+    }
+    
     NSString *alertMessage = [NSString stringWithFormat:self.alertMessage, version, self.alertMessageDetail];
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:self.alertTitle message:alertMessage preferredStyle:UIAlertControllerStyleAlert];
     
