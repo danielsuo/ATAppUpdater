@@ -46,7 +46,8 @@
     self = [super init];
     if (self) {
         self.alertTitle = @"New Version";
-        self.alertMessage = @"Version %@ is available on the AppStore.";
+        self.alertMessage = @"Version %@ is available on the AppStore.%@";
+        self.alertMessageDetail = @"";
         self.alertUpdateButtonTitle = @"Update";
         self.alertCancelButtonTitle = @"Not Now";
     }
@@ -136,7 +137,7 @@ NSString *appStoreURL = nil;
 
 - (void)alertUpdateForVersion:(NSString *)version withForce:(BOOL)force
 {
-    NSString *alertMessage = [NSString stringWithFormat:self.alertMessage, version];
+    NSString *alertMessage = [NSString stringWithFormat:self.alertMessage, version, self.alertMessageDetail];
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:self.alertTitle message:alertMessage preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *updateAction = [UIAlertAction actionWithTitle:self.alertUpdateButtonTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
