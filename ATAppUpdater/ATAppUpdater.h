@@ -52,6 +52,9 @@
 /** Set the UIAlertView alert message. NSLocalizedString() supported. */
 @property (nonatomic, weak) NSString *alertMessage;
 
+/** Set the UIAlertView alert message details. NSLocalizedString() supported. */
+@property (nonatomic, weak) NSString *alertMessageDetail;
+
 /** Set the UIAlertView update button's title. NSLocalizedString() supported. */
 @property (nonatomic, weak) NSString *alertUpdateButtonTitle;
 
