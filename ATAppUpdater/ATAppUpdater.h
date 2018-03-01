@@ -61,6 +61,7 @@
 /** Set the UIAlertView cancel button's title. NSLocalizedString() supported. */
 @property (nonatomic, weak) NSString *alertCancelButtonTitle;
 
+@property (nonatomic) BOOL showOnce;
 
 /** Shared instance. [ATAppUpdater sharedUpdater] */
 + (id)sharedUpdater;
