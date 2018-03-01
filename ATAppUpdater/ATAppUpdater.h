@@ -36,7 +36,7 @@
 - (void)appUpdaterUserDidLaunchAppStore;
 
 /** Will be called when the user selected not to update now. */
-- (void)appUpdaterUserDidCancel;
+- (void)appUpdaterUserDidCancelWithVersion:(NSString *)version;
 
 @end
 
