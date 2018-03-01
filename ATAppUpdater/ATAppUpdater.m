@@ -150,8 +150,8 @@ NSString *appStoreURL = nil;
     
     if (!force) {
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:self.alertCancelButtonTitle style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            if ([self.delegate respondsToSelector:@selector(appUpdaterUserDidCancel)]) {
-                [self.delegate appUpdaterUserDidCancel];
+            if ([self.delegate respondsToSelector:@selector(appUpdaterUserDidCancelWithVersion)]) {
+                [self.delegate appUpdaterUserDidCancelWithVersion:version];
             }
         }];
         [alert addAction:cancelAction];
